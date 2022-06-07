@@ -258,6 +258,7 @@ int main()
  */
 //登录三次
 #include <stdio.h>
+#include <string.h>
 int main()
 {
   int i = 0;
