@@ -81,7 +81,7 @@ int main()
 } */
 
 // do  while()
-//break，终止循环
+// break，终止循环
 /* #include <stdio.h>
 int main()
 {
@@ -113,7 +113,7 @@ int main()
 }
  */
 
-//1.n的阶乘
+// 1.n的阶乘
 /* #include <stdio.h>
 int JC(int n)
 {
@@ -203,3 +203,77 @@ int main()
 } */
 
 //折半查找算法、二分查找算法
+/* #include <stdio.h>
+int main()
+{
+  int k = 7;
+  int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  int sz = sizeof(arr) / sizeof(arr[0]);
+  int left = 0;
+  int right = sz - 1;
+  while (left <= right)
+  {
+    int mid = (left + right) / 2;
+    if (arr[mid] > k)
+      right = mid - 1;
+    else if (arr[mid] < k)
+      left = mid + 1;
+    else
+    {
+      printf("找到了，下标是：%d\n", mid);
+      break;
+    }
+  }
+  while (left>right)
+  {
+    printf("找不到\n");
+  }
+  return 0;
+} */
+
+//演示多个字符从两端移动，向中间汇聚
+/* #include <stdio.h>
+#include <string.h>
+#include <windows.h>
+#include <stdlib.h>
+int main()
+{
+  char arr1[] = "welcome to bit!!!!!!";
+  char arr2[] = "####################";
+  int left = 0;
+  // int right = sizeof(arr1) / sizeof(arr1[0]) - 2;
+  int right = strlen(arr1) - 1;
+  while (left <= right)
+  {
+    arr2[left] = arr1[left];
+    arr2[right] = arr1[right];
+    printf("%s\n", arr2);
+    Sleep(1000);   //#include <windows.h>
+    system("cls"); //#include <stdlib.h>
+    left++;
+    right--;
+  }
+  return 0;
+}
+ */
+//登录三次
+#include <stdio.h>
+int main()
+{
+  int i = 0;
+  for (i = 0; i < 3;i++)
+  {
+    int i = 0;
+    char password[20] = {0};
+    printf("input password:\n");
+    scanf("%s", password);
+    if(strcmp(password,"123456")==0)//==不能用来比较两个字符串是否相等。
+    {
+      printf("correct!\n");
+      break;
+    }
+  }
+  if(i==3)
+    printf("incorrect!\n");
+  return 0;
+}
