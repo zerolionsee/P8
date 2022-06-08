@@ -254,17 +254,82 @@ int main()
     right--;
   }
   return 0;
-}
- */
+} */
+
+//上面两个例子都有计算数组右侧下标，纯数组可以用sizeof(arr)/sizeof(arr[0])-1
+//如果用字符串给数组赋值，这时候可以用sizeof(arr)/sizeof(arr[0])-2，因为数组内部是字符串+'\0';
+//也可以用strlen(arr)-1;
+// sizeof计算的是分配空间的实际字节数；
+// strlen计算的是空间中字符的个数，不包括'\0'
+// sizeof是运算符；strlen是函数，只能以char*(字符串)做参数。想要得到结果，必须包含'\0'
+// sizeof编译的时候就将结果计算出来了，是类型所占空间的字节数，数组名做参数时，是整个数组的大小。
+// strlen是运算的时候才开始计算结果，是计算的结果，不是类型所占内存的大小，数组名退化为指针。
+// strlen参数必须是字符型指针（char*）。当数组名作为参数传入时，实际上数组就退化成指针了。
+//数组做sizeof的参数不退化，传递给strlen就退化为指针了。
+// sizeof 不能计算动态分配空间的大小。
+// sizeof后如果是类型必须加括弧，如果是变量名可以不加括弧。这是因为sizeof是个操作符不是个函数
+//数组作为参数传给函数时传的是指针而不是数组，传递的是数组的首地址，
+// fun(char[8])
+//     fun(char[])
+//         都等价于 fun(char *)
+
+// exg1
+/* #include <stdio.h>
+#include <string.h>
+int main()
+{
+  char str[20] = "hello world";
+  char *s = (char *)malloc(20);
+  strcpy(s, str);
+  printf("strlen(str)=%d\n", strlen(str));
+  printf("sizeof(str)\n", sizeof(str));
+  printf("strlen(s)=%d\n", strlen(s));
+  printf("sizeof(s)\n", sizeof(s));//计算的是指针大小
+} */
+
+// exg2
+/* #include <stdio.h>
+#include <string.h>
+
+int main()
+{
+  char str1[] = "0123456789";
+  int a = sizeof(str1); // a=11
+  int b = strlen(str1); // b=10
+  int i = sizeof(*str1);
+  printf("%d\t%d\t%d\n", a, b, i);
+
+  char str2[20] = "0123456789";
+  int c = sizeof(str2);
+  int d = strlen(str2);
+  printf("%d\t%d\n", c, d);
+
+  char *str3 = "0123456789";
+  int e = sizeof(str3);//str3是字符指针，
+  int f = strlen(str3);
+  int g = sizeof(*str3);//第一个字符所占空间
+  printf("%d\t%d\t%d\n", e, f, g);
+
+  int h = sizeof(char);
+  printf("%d\n", h);
+
+  int str4[20] = "0123456789"; //执行不下去，变量类型都不一样
+  int j = sizeof(str4); //
+  // int k = strlen(str4);//错误
+  int l = sizeof(*str4); //
+  printf("%d\t%d\n", j, l);
+
+  return 0;
+} */
+
 //登录三次
-#include <stdio.h>
+/* #include <stdio.h>
 #include <string.h>
 int main()
 {
   int i = 0;
   for (i = 0; i < 3;i++)
   {
-    int i = 0;
     char password[20] = {0};
     printf("input password:\n");
     scanf("%s", password);
@@ -273,8 +338,10 @@ int main()
       printf("correct!\n");
       break;
     }
+    else
+      printf("bad password!\n");
   }
   if(i==3)
     printf("incorrect!\n");
   return 0;
-}
+} */
