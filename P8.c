@@ -167,7 +167,6 @@ int main()
 /* #include <stdio.h>
 int main()
 {
-  int i;
   int n;
   int ret = 1;
   int s = 0;
